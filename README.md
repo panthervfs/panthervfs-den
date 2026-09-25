@@ -41,6 +41,14 @@ To update the shopping list, replace the placeholder rows in
 The site will be available at:
 <https://panthervfs.github.io/panthervfs-den/>
 
+## Cache behavior
+
+GitHub Pages sets a CDN cache lifetime of up to 10 minutes. The site adds
+document no-cache metadata, versioned assets, timestamped same-site navigation,
+and back/forward-cache handling so normal navigation requests the latest
+deployment. After changing CSS or JavaScript, update the version value on its
+HTML references as an additional asset cache reset.
+
 ## Privacy
 
 GitHub Pages is public hosting. Treat the site as public even if the URL is only
