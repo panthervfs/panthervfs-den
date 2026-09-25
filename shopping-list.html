@@ -28,35 +28,181 @@
     <header class="page-header">
       <p class="hero-eyebrow">Notes · Shopping</p>
       <h1>Shopping List</h1>
-      <p class="hero-sub">The list is ready; add the real items when you have them.</p>
+      <p class="hero-sub">Party revival supplies, healing, detox options, and useful adventuring gear.</p>
     </header>
 
     <main class="container" id="main-content">
       <section class="section">
         <p class="section-label">Current List</p>
-        <h2>Things to Pick Up</h2>
+        <h2>Current Preferred Shopping List</h2>
         <p>
-          This public starter list is intentionally empty. Add items directly in
-          <code>shopping-list.html</code> by copying one of the checklist rows.
+          A wishlist, not confirmed purchases. Quantities are still to be decided;
+          healing tiers and detox supplies are separate options, not a commitment
+          to buy every variant. Updated September 24, 2026.
+        </p>
+        <div class="callout">
+          <p class="callout-title">Rules and references</p>
+          <p>
+            Descriptions use the 2024 rules, with our campaign's healing-potion
+            exception noted below. D&amp;D Beyond links are reference pages, not
+            shop listings. Attunement requirements shown are the standard rules;
+            campaign exceptions remain up to the DM.
+          </p>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="revival-heading">
+        <p class="section-label">Emergency Supplies</p>
+        <h2 id="revival-heading">Revival</h2>
+        <ul class="shopping-list">
+          <li>
+            <div>
+              <h3>Revivify Scroll</h3>
+              <p>
+                Revives a creature within 1 minute of death with 1 HP, using an
+                Action and touch. Cannot reverse old-age death or restore missing
+                body parts. No separate diamond is needed for scroll use.
+                Requires an eligible reader; casting above their normal spell
+                level requires a DC 13 spellcasting-ability check, with the scroll
+                lost on failure.
+              </p>
+              <a href="https://www.dndbeyond.com/spells/2618956-revivify">Revivify spell reference on D&amp;D Beyond</a>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="healing-heading">
+        <p class="section-label">Potion Options</p>
+        <h2 id="healing-heading">Healing Potions</h2>
+        <p>
+          Our campaign rule: drink as a Bonus Action for rolled healing, or spend
+          an Action to drink for maximum healing. Maximum healing when administering
+          a potion to someone else is not established by this exception.
         </p>
         <ul class="shopping-list">
           <li>
-            <input id="item-1" type="checkbox" disabled>
-            <label class="empty-item" for="item-1">Add the first shopping item</label>
+            <div>
+              <h3>Potion of Healing</h3>
+              <p>Restores 2d4+2 HP; our Action-to-drink maximum is 10 HP.</p>
+              <a href="https://www.dndbeyond.com/magic-items/4708-potions-of-healing">Healing potion family on D&amp;D Beyond</a>
+            </div>
           </li>
           <li>
-            <input id="item-2" type="checkbox" disabled>
-            <label class="empty-item" for="item-2">Add another shopping item</label>
+            <div>
+              <h3>Potion of Greater Healing</h3>
+              <p>Restores 4d4+4 HP; our Action-to-drink maximum is 20 HP.</p>
+              <a href="https://www.dndbeyond.com/magic-items/5133-potion-of-healing-greater">Greater Healing on D&amp;D Beyond</a>
+            </div>
           </li>
           <li>
-            <input id="item-3" type="checkbox" disabled>
-            <label class="empty-item" for="item-3">Add one more shopping item</label>
+            <div>
+              <h3>Potion of Superior Healing</h3>
+              <p>Restores 8d4+8 HP; our Action-to-drink maximum is 40 HP.</p>
+              <a href="https://www.dndbeyond.com/magic-items/4708-potions-of-healing">Healing potion family on D&amp;D Beyond (includes Superior)</a>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Potion of Supreme Healing</h3>
+              <p>Restores 10d4+20 HP; our Action-to-drink maximum is 60 HP.</p>
+              <a href="https://www.dndbeyond.com/magic-items/5135-potion-of-healing-supreme">Supreme Healing on D&amp;D Beyond</a>
+            </div>
           </li>
         </ul>
-        <div class="callout">
-          <p class="callout-title">Public list</p>
-          <p>Only add items you are comfortable sharing with anyone who has the site URL.</p>
-        </div>
+      </section>
+
+      <section class="section" aria-labelledby="detox-heading">
+        <p class="section-label">Prevention and Recovery</p>
+        <h2 id="detox-heading">Detox Options</h2>
+        <ul class="shopping-list">
+          <li>
+            <div>
+              <h3>Antitoxin</h3>
+              <p>
+                Drink as a Bonus Action for Advantage on saves to avoid or end
+                Poisoned for 1 hour. Helps resist poison; does not automatically
+                cure it or grant Poison damage resistance.
+              </p>
+              <a href="https://www.dndbeyond.com/equipment/520-antitoxin">Antitoxin on D&amp;D Beyond</a>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Potion of Vitality</h3>
+              <p>
+                Removes all Exhaustion and ends Poisoned. Also maximizes healing
+                from spent Hit Dice for 24 hours. The 2024 version is not a general
+                disease cure.
+              </p>
+              <a href="https://www.dndbeyond.com/magic-items/5360-potion-of-vitality">Potion of Vitality on D&amp;D Beyond</a>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="equipment-heading">
+        <p class="section-label">Utility and Support</p>
+        <h2 id="equipment-heading">Other Supplies and Equipment</h2>
+        <ul class="shopping-list">
+          <li>
+            <div>
+              <h3>Caltrops</h3>
+              <p>
+                Spend a Utilize action to cover a 5-foot square within 5 feet.
+                A creature entering for the first time on a turn makes a DC 15
+                Dexterity save or takes 1 Piercing damage and has Speed 0 until
+                its next turn starts. Affects allies too; recovering the caltrops
+                takes 10 minutes.
+              </p>
+              <a href="https://www.dndbeyond.com/equipment/497-caltrops">Caltrops on D&amp;D Beyond</a>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Slippers of Spider Climbing</h3>
+              <p>
+                Walk on walls and ceilings with hands free; Climb Speed equals
+                walking Speed. Does not work on slippery surfaces such as oil or
+                ice. Requires attunement.
+              </p>
+              <a href="https://www.dndbeyond.com/magic-items/4755-slippers-of-spider-climbing">Slippers of Spider Climbing on D&amp;D Beyond</a>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Amulet of Health</h3>
+              <p>
+                Sets Constitution to 19 while worn, improving HP and Constitution
+                saves if that raises your modifier. No effect if Constitution is
+                already 19 or higher. Requires attunement.
+              </p>
+              <a href="https://www.dndbeyond.com/magic-items/4568-amulet-of-health">Amulet of Health on D&amp;D Beyond</a>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Potion of Heroism</h3>
+              <p>
+                For 1 hour, grants 10 temporary HP and Bless (+1d4 to attacks and
+                saves) without Concentration. Does not stack with another Bless
+                or add together with other temporary HP.
+              </p>
+              <a href="https://www.dndbeyond.com/magic-items/4709-potion-of-heroism">Potion of Heroism on D&amp;D Beyond</a>
+            </div>
+          </li>
+          <li>
+            <div>
+              <h3>Pearl of Power</h3>
+              <p>
+                Use a Magic action to recover one spent spell slot of level 3 or
+                lower, once per dawn. Does not create access to higher-level
+                slots. Requires attunement by a spellcaster.
+              </p>
+              <a href="https://www.dndbeyond.com/magic-items/9228918-pearl-of-power">Pearl of Power on D&amp;D Beyond</a>
+            </div>
+          </li>
+        </ul>
       </section>
     </main>
 

@@ -21,8 +21,11 @@ Open <http://localhost:8000/>.
 - `notes.html`: public note links.
 - `shopping-list.html`: the shopping list linked from Notes.
 
-To update the shopping list, replace the placeholder rows in
-`shopping-list.html`. The list is static and changes are published through Git.
+To update the shopping list, edit the grouped item descriptions and D&D Beyond
+links in `shopping-list.html`. Keep healing tiers and detox options separate,
+and distinguish campaign exceptions from standard rules. This is a static
+wishlist, not a purchase tracker; quantities remain undecided until confirmed.
+Changes are published through Git.
 
 ## Publish with GitHub Pages
 
