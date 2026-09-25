@@ -22,7 +22,8 @@ Open <http://localhost:8000/>.
 - `shopping-list.html`: the shopping list linked from Notes.
 
 To update the shopping list, edit the grouped item descriptions and D&D Beyond
-links in `shopping-list.html`. Keep healing tiers and detox options separate,
+links in `shopping-list.html`. Each item in CostGnome prices has a labeled price
+line; replace `??? GP` when its price is known. Keep healing tiers and detox options separate,
 and distinguish campaign exceptions from standard rules. This is a static
 wishlist, not a purchase tracker; quantities remain undecided until confirmed.
 Changes are published through Git.
