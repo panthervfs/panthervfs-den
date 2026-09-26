@@ -17,16 +17,34 @@ Open <http://localhost:8000/>.
 ### Main pages
 
 - `index.html`: home page and campaign spotlight.
-- `campaigns.html`: a placeholder for future creator-approved campaign material.
+- `campaigns.html`: approved public campaign links and publishing boundaries.
+- `bathys-anemos.html`: the Bathys Anemos session index.
+- `bathys-anemos-session-01.html` through
+  `bathys-anemos-session-04.html`: dated public session recaps.
 - `notes.html`: public note links.
-- `shopping-list.html`: the shopping list linked from Notes.
+- `costgnome.html`: the landing page for items being researched before purchase.
+- `shopping-list.html`: CostGnome's current price-research list.
 
 To update the shopping list, edit the grouped item descriptions and D&D Beyond
 links in `shopping-list.html`. Each item in CostGnome prices has a labeled price
-line; replace `??? GP` when its price is known. Keep healing tiers and detox options separate,
-and distinguish campaign exceptions from standard rules. This is a static
-wishlist, not a purchase tracker; quantities remain undecided until confirmed.
-Changes are published through Git.
+line; replace `??? GP` when its price is known. Keep healing tiers and detox
+options separate, and distinguish campaign exceptions from standard rules. This
+is a static wishlist, not a purchase tracker; quantities remain undecided until
+confirmed. Changes are published through Git.
+
+### Add a Bathys Anemos session
+
+The private Obsidian journal is reference material, not a publishable source
+file. For each new played session:
+
+1. Write a concise original recap as a new zero-padded HTML page.
+2. Include the session date, a spoiler warning, major played events, and where
+   the party stopped.
+3. Use character names only. Omit player and DM names, private finances,
+   character-build bookkeeping, local paths, Obsidian links, PDF references,
+   rules text, and unplayed campaign material.
+4. Add the session to `bathys-anemos.html` and connect the previous/next links.
+Do not copy or automatically publish files from the private vault.
 
 ## Publish with GitHub Pages
 
