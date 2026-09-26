@@ -13,7 +13,7 @@ build system unless explicitly requested.
   `.page-header`, `.section`, `.card`, `.link-panel`, `.button`, and `.callout`.
 - Keep primary navigation synchronized across `index.html`, `campaigns.html`,
   `notes.html`, `costgnome.html`, `shopping-list.html`, `bathys-anemos.html`,
-  and every `bathys-anemos-session-*.html` page.
+  `store-pricing-list.html`, and every `bathys-anemos-session-*.html` page.
 - Use one contextually correct `aria-current="page"` per navigable page. A
   CostGnome subpage should mark CostGnome as current; a Bathys Anemos page
   should mark Campaigns as current.
@@ -24,6 +24,10 @@ build system unless explicitly requested.
   private records, addresses, secrets, and unpublished campaign content.
 - Keep internal page links relative so local preview and the GitHub Pages
   project path both work.
+- Keep every CostGnome item on exactly one page. Items without confirmed prices
+  belong in `shopping-list.html`; items with confirmed prices belong in
+  `store-pricing-list.html`. Move the full item card when a price is confirmed
+  instead of duplicating the item.
 - Build Bathys Anemos session pages as hand-written original summaries of
   approved, already played events. Include spoiler warnings and use character
   names only.

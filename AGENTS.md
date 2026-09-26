@@ -9,8 +9,9 @@
   structure.
 - Primary navigation is repeated in `index.html`, `campaigns.html`, `notes.html`,
   `costgnome.html`, `shopping-list.html`, `bathys-anemos.html`, and each
-  `bathys-anemos-session-*.html` page. Keep those copies synchronized and set
-  exactly one appropriate `aria-current="page"` value on each page.
+  `bathys-anemos-session-*.html` page, plus `store-pricing-list.html`. Keep
+  those copies synchronized and set exactly one appropriate
+  `aria-current="page"` value on each page.
 
 ## Design and content
 
@@ -23,6 +24,10 @@
   sensitive information.
 - Keep copy concise and consistent with the site's practical, lightly themed
   tone. CostGnome is the top-level area for shopping and price research.
+- Keep CostGnome items on exactly one list: unknown-price items belong in
+  `shopping-list.html`, and confirmed-price items belong in
+  `store-pricing-list.html`. Move the complete item entry when its status
+  changes; do not duplicate it across both pages.
 - Bathys Anemos pages are manually curated public recaps of approved, already
   played events. Use character names only; omit player and DM names, private
   finances, build bookkeeping, local vault paths, Obsidian links, PDFs, copied

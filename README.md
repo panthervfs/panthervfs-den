@@ -23,14 +23,16 @@ Open <http://localhost:8000/>.
   `bathys-anemos-session-04.html`: dated public session recaps.
 - `notes.html`: public note links.
 - `costgnome.html`: the landing page for items being researched before purchase.
-- `shopping-list.html`: CostGnome's current price-research list.
+- `shopping-list.html`: CostGnome items that do not have confirmed prices.
+- `store-pricing-list.html`: CostGnome items with confirmed store prices.
 
-To update the shopping list, edit the grouped item descriptions and D&D Beyond
-links in `shopping-list.html`. Each item in CostGnome prices has a labeled price
-line; replace `??? GP` when its price is known. Keep healing tiers and detox
-options separate, and distinguish campaign exceptions from standard rules. This
-is a static wishlist, not a purchase tracker; quantities remain undecided until
-confirmed. Changes are published through Git.
+Add items without confirmed prices to `shopping-list.html`. When a price is
+confirmed, move the complete item entry to the appropriate category in
+`store-pricing-list.html` and replace its research status with a labeled price.
+Keep item descriptions and D&D Beyond links intact, preserve separate healing
+and detox categories, and distinguish campaign exceptions from standard rules.
+These are static reference lists, not purchase trackers; quantities remain
+undecided until confirmed. Changes are published through Git.
 
 ### Add a Bathys Anemos session
 
