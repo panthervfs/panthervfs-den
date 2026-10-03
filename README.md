@@ -20,7 +20,7 @@ Open <http://localhost:8000/>.
 - `campaigns.html`: approved public campaign links and publishing boundaries.
 - `bathys-anemos.html`: the Bathys Anemos session index.
 - `bathys-anemos-session-01.html` through
-  `bathys-anemos-session-04.html`: dated public session recaps.
+  `bathys-anemos-session-05.html`: public session recaps.
 - `notes.html`: public note links.
 - `costgnome.html`: the landing page for items being researched before purchase.
 - `shopping-list.html`: CostGnome items that do not have confirmed prices.
@@ -40,8 +40,10 @@ The private Obsidian journal is reference material, not a publishable source
 file. For each new played session:
 
 1. Write a concise original recap as a new zero-padded HTML page.
-2. Include the session date, a spoiler warning, major played events, and where
-   the party stopped.
+2. Include the confirmed play date, a spoiler warning, major played events, and
+   where the party stopped. If the play date is unknown, label the recap by
+   session number and state that the date is not recorded. Keep any publication
+   date explicitly separate rather than inferring a play date from the schedule.
 3. Use character names only. Omit player and DM names, private finances,
    character-build bookkeeping, local paths, Obsidian links, PDF references,
    rules text, and unplayed campaign material.
