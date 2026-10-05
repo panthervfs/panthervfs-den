@@ -34,6 +34,13 @@ build system unless explicitly requested.
 - Do not directly copy or sync the private Obsidian journal. Exclude player and
   DM names, private finances, build-sheet bookkeeping, local paths, Obsidian
   wikilinks, PDFs, copied rules text, and unplayed material.
+- Exception for the approved `sophirus.html` character snapshot only: allow
+  character name/build/stats, selected/granted spells, curated equipment effects,
+  current/max resources, companions, remaining consumables and linked currency.
+  An explicit desktop-local export may regenerate this HTML and its scoped
+  `assets/css/character-sheet-2024.css`; no build system or automatic publication
+  is involved. Exclude all player/DM identity, raw private data, journal/history,
+  acquisition stories, local paths/PDFs and unplayed lore. Recap rules remain.
 
 ## Documentation and validation
 

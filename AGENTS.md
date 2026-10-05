@@ -35,6 +35,14 @@
 - Never directly sync, export, or copy the private Obsidian journal into this
   repository. Write original summaries and add a spoiler warning to each
   campaign index or session page.
+- Narrow character-page exception: `sophirus.html` is an explicitly approved
+  read-only character snapshot. It may show the character name, build, stats,
+  selected/granted spells, curated equipment effects, current/max resources,
+  companions, remaining consumables and linked currency. Its explicit desktop
+  export updates only that HTML and `assets/css/character-sheet-2024.css`.
+  Never include player/DM identity, raw vault data, paths, PDFs, journal,
+  maintenance history, acquisition stories or unplayed lore. This exception
+  does not relax recap restrictions or authorize automatic publication.
 
 ## Changes and verification
 

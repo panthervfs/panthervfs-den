@@ -19,6 +19,7 @@ Open <http://localhost:8000/>.
 - `index.html`: home page and campaign spotlight.
 - `campaigns.html`: approved public campaign links and publishing boundaries.
 - `bathys-anemos.html`: the Bathys Anemos session index.
+- `sophirus.html`: approved read-only level-8 character snapshot.
 - `bathys-anemos-session-01.html` through
   `bathys-anemos-session-05.html`: public session recaps.
 - `notes.html`: public note links.
@@ -51,6 +52,25 @@ file. For each new played session:
 Do not copy or automatically publish files from the private vault.
 
 ## Publish with GitHub Pages
+
+### Refresh the character snapshot locally
+
+Use **Export to Den (local only)** in the additional 2024-style Obsidian view on
+desktop. The explicitly configured destination must be this repository's real
+local checkout. The export replaces only `sophirus.html` and
+`assets/css/character-sheet-2024.css`, using fresh committed character values
+and an allowlisted mechanical presentation. Do not hand-edit generated snapshot
+content; review/update its source projection when equipment or build references
+change. The page's timestamp distinguishes a snapshot from live play state.
+
+Only this approved character page may contain build statistics, current/max
+resources, companion values, remaining consumables and linked currency.
+Player/DM identities, private journal/history, acquisition stories, raw vault
+data, local paths and PDFs remain excluded. This does not change recap rules.
+
+Preview with `python3 -m http.server 8000 --bind 127.0.0.1` and open
+<http://127.0.0.1:8000/sophirus.html>. Export neither commits nor publishes.
+Review the local diff before any separately authorized publication.
 
 1. Create a public GitHub repository named `panthervfs-den`.
 2. Add it as this repository's remote and push `main`:
