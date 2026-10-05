@@ -17,7 +17,7 @@ Open <http://localhost:8000/>.
 ### Main pages
 
 - `index.html`: home page and campaign spotlight.
-- `campaigns.html`: approved public campaign links and publishing boundaries.
+- `campaigns.html`: Session Notes and Character Sheets button panels, plus publishing boundaries.
 - `bathys-anemos.html`: the Bathys Anemos session index.
 - `sophirus.html`: approved read-only level-8 character snapshot.
 - `bathys-anemos-session-01.html` through

@@ -158,8 +158,8 @@
 .cs2024 .trial-currency-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
 .cs2024 .trial-currency-cell { min-width: 0; padding: 8px; background: var(--cs-card); border-radius: 6px; }
 .cs2024 .trial-currency-cell > span, .cs2024 .trial-currency-cell > output { display: block; overflow-x: auto; }
-.cs2024 .trial-currency-scroll { overflow-x: auto; }
-.cs2024 .trial-currency-buttons { display: flex; gap: 3px; width: max-content; margin-top: 4px; }
+.cs2024 .trial-currency-scroll { display: flex; flex-wrap: nowrap; gap: 3px; overflow-x: auto; }
+.cs2024 .trial-currency-buttons { display: flex; flex: 0 0 auto; gap: 3px; width: max-content; margin-top: 4px; }
 .cs2024 .trial-currency-buttons button { flex: 0 0 44px; padding: 3px; }
 .cs2024 .trial-currency-input { width: 100%; }
 .cs2024 .trial-hp-adjustments { margin-top: 8px; width: 100%; }
