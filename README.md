@@ -19,7 +19,7 @@ Open <http://localhost:8000/>.
 - `index.html`: home page and campaign spotlight.
 - `campaigns.html`: Session Notes and Character Sheets button panels, plus publishing boundaries.
 - `bathys-anemos.html`: the Bathys Anemos session index.
-- `sophirus.html`: approved read-only level-8 character snapshot.
+- `sophirus.html`: approved level-8 starting snapshot with temporary play controls.
 - `bathys-anemos-session-01.html` through
   `bathys-anemos-session-05.html`: public session recaps.
 - `notes.html`: public note links.
@@ -62,6 +62,24 @@ local checkout. The export replaces only `sophirus.html` and
 and an allowlisted mechanical presentation. Do not hand-edit generated snapshot
 content; review/update its source projection when equipment or build references
 change. The page's timestamp distinguishes a snapshot from live play state.
+
+`assets/js/character-sheet-play.js` is the maintained browser controller.
+Export requires this asset, checks it for concurrent changes and versions its
+HTML reference by content hash; it does not overwrite the controller. After
+changing the script, regenerate the snapshot before publishing.
+
+**Temporary play mode:** HP, Temp HP, Aid/manual maximum HP, Inspiration,
+slots/free casts, Hit Dice, death results, companion HP, consumables and linked
+coins can be adjusted in the current tab only. Refresh restores the published
+starting snapshot, not full resources. Other tabs are independent. There is no
+storage, cookie, save, sync, database or connection to the source character.
+Damage uses Temp HP first; Temp HP grants retain the larger value rather than
+stacking. Aid only heals by an increase in its effective bonus; lowering/ending
+it clamps current HP only when above the new maximum. Slots, reminders and
+consumables remain independent manual counters. There are no automatic rolls,
+rests, casting, companion effects or preparation changes. Print uses the
+currently displayed values without editing controls. With JavaScript disabled
+or unavailable, the published starting values remain readable.
 
 Only this approved character page may contain build statistics, current/max
 resources, companion values, remaining consumables and linked currency.

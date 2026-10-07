@@ -36,13 +36,18 @@
   repository. Write original summaries and add a spoiler warning to each
   campaign index or session page.
 - Narrow character-page exception: `sophirus.html` is an explicitly approved
-  read-only character snapshot. It may show the character name, build, stats,
+  character starting snapshot with temporary, memory-only play controls. It may show the character name, build, stats,
   selected/granted spells, curated equipment effects, current/max resources,
   companions, remaining consumables and linked currency. Its explicit desktop
   export updates only that HTML and `assets/css/character-sheet-2024.css`.
   Never include player/DM identity, raw vault data, paths, PDFs, journal,
   maintenance history, acquisition stories or unplayed lore. This exception
   does not relax recap restrictions or authorize automatic publication.
+  `assets/js/character-sheet-play.js` owns the browser-only controls and stays
+  in this repository; export checks it and versions its HTML reference without
+  overwriting it. No cookies, storage, database, network writes or vault sync.
+  Refresh restores published values, not necessarily full resources. Keep the
+  no-JavaScript snapshot readable and retain the fixed published spell list.
 
 ## Changes and verification
 

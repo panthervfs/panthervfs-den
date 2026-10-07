@@ -180,6 +180,13 @@
 .cs-snapshot-header.page-header { padding: 16px; }
 .cs-snapshot-header.page-header p { margin: 4px 0; }
 .cs-snapshot-date { display: none; }
+.cs2024.cs-temporary-play .trial-hp-controls { align-items: end; }
+.cs2024.cs-temporary-play label { display: grid; gap: 4px; }
+.cs2024.cs-temporary-play button, .cs2024.cs-temporary-play select { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.cs2024.cs-temporary-play .trial-currency-cell > output { white-space: nowrap; }
+.cs2024.cs-temporary-play .trial-currency-cell > button { width: 100%; margin-top: 4px; }
+#cs-play-status { padding: 10px; border: 1px solid #6c9dcc; border-radius: 6px; overflow-wrap: anywhere; }
+#cs-play-status[role="alert"] { border-color: #f0ce78; color: #f0ce78; }
 @container (max-width: 920px) {
     .cs2024 .cs-attributes-supplies, .cs2024 .cs-companion-grid { grid-template-columns: 1fr; }
     .cs2024 .cs-health, .cs2024 .cs-top-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -202,6 +209,7 @@
 }
 @media (max-width: 500px) { .cs2024 { padding: 10px; font-size: 13px; } }
 @media print {
+    #cs-play-status { display: none; }
     .cs2024 { --cs-bg: white; --cs-panel: white; --cs-card: #f4f4f4; --cs-line: #999; --cs-text: #151515; --cs-muted: #454545; --cs-gold: #584112; --cs-blue: #244c73; --cs-blue-line: #526b82; --cs-blue-fill: #f4f6f8; color-scheme: light; padding: 0; border: 0; font-size: 10pt; max-width: none; }
     .cs2024 .cs-header, .cs2024 .cs-ability header { background: #f3f3f3; }
     .cs2024 .cs-header { padding: 10px; }
