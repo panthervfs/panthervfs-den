@@ -198,7 +198,7 @@
       scroll.setAttribute("aria-label", `${unit.name} adjustment controls; scroll horizontally on narrow panes`);
       const buttons = element(scroll, "div", undefined, "trial-currency-buttons");
       const increments = [];
-      for (const step of [-10, -1, 1, 10]) {
+      for (const step of [-1, 1]) {
         const delta = step * unit.factor;
         const control = button(buttons, `${step > 0 ? "+" : ""}${step}`, `${step < 0 ? "Spend" : "Add"} ${Math.abs(step)} ${unit.code}`, () => change(s => {
           if (delta < 0 ? s.currencyCP < -delta : limit - s.currencyCP < delta) throw new Error("The full increment exceeds balance limits.");

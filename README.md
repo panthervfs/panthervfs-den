@@ -73,6 +73,8 @@ slots/free casts, Hit Dice, death results, companion HP, consumables and linked
 coins can be adjusted in the current tab only. Refresh restores the published
 starting snapshot, not full resources. Other tabs are independent. There is no
 storage, cookie, save, sync, database or connection to the source character.
+Each denomination has only -1 and +1 buttons, with centered labels, balances
+and balance-input text. The denominations remain linked equivalents.
 Damage uses Temp HP first; Temp HP grants retain the larger value rather than
 stacking. Aid only heals by an increase in its effective bonus; lowering/ending
 it clamps current HP only when above the new maximum. Slots, reminders and
