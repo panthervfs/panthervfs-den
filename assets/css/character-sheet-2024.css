@@ -143,6 +143,19 @@
 .cs2024 .cs-consumable p { margin: 6px 0 0; font-size: .9em; }
 .cs2024 .cs-companion-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: start; }
 .cs2024 .cs-companion-grid > section { padding: 12px; background: var(--cs-card); border-radius: 6px; }
+.cs2024 .cs-roll-heading { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+.cs2024 .cs-roll-heading > [data-cs-roll-status] { max-width: 24rem; color: var(--cs-muted); text-align: right; font-size: .84em; }
+.cs2024 .cs-roll-heading > [data-cs-roll-status].is-error, .cs2024 .cs-roll-result.is-error { color: #ffd27a; }
+.cs2024 .cs-roll-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; align-items: start; }
+.cs2024 .cs-roll-group { padding: 10px; border: 1px solid var(--cs-line); border-radius: 6px; background: var(--cs-card); }
+.cs2024 .cs-roll-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 8px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--cs-line); }
+.cs2024 .cs-roll-row:last-child { border-bottom: 0; }
+.cs2024 .cs-roll-controls { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 4px; }
+.cs2024 .cs-roll-controls button { min-width: 44px; padding-inline: 8px; }
+.cs2024 .cs-roll-result { grid-column: 1 / -1; color: var(--cs-blue); font-size: .84em; overflow-wrap: anywhere; }
+.cs2024 .cs-roll-result:empty { display: none; }
+.cs2024 .cs-roll-history { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--cs-line); }
+.cs2024 .cs-roll-history ol { margin: 0; padding-left: 1.5rem; max-height: 13rem; overflow: auto; color: var(--cs-muted); font-size: .84em; }
 .cs2024 .cs-footer { color: var(--cs-muted); font-size: .78em; text-align: center; }
 .cs2024 .cs-toolbar:empty, .cs2024 [data-cs-interactive]:empty, .cs2024 [data-cs-spell-reference]:empty { display: none; }
 .cs2024 .cs-toolbar { margin-bottom: 14px; }
@@ -189,6 +202,7 @@
 #cs-play-status[role="alert"] { border-color: #f0ce78; color: #f0ce78; }
 @container (max-width: 920px) {
     .cs2024 .cs-attributes-supplies, .cs2024 .cs-companion-grid { grid-template-columns: 1fr; }
+    .cs2024 .cs-roll-grid { grid-template-columns: 1fr; }
     .cs2024 .cs-health, .cs2024 .cs-top-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @container (max-width: 500px) {
@@ -206,6 +220,10 @@
     .cs2024 .cs-skill { grid-template-columns: 10px 1.9em minmax(0, 1fr); gap: 3px; }
     .cs2024 .trial-resource-stepper { grid-template-columns: 1fr 1fr; }
     .cs2024 .trial-resource-stepper output { grid-row: 1; grid-column: 1 / -1; }
+    .cs2024 .cs-roll-heading { display: block; }
+    .cs2024 .cs-roll-heading > [data-cs-roll-status] { max-width: none; text-align: left; }
+    .cs2024 .cs-roll-row { grid-template-columns: 1fr; }
+    .cs2024 .cs-roll-controls { justify-content: flex-start; }
 }
 @media (max-width: 500px) { .cs2024 { padding: 10px; font-size: 13px; } }
 @media print {

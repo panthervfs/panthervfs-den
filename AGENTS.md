@@ -45,7 +45,9 @@
   does not relax recap restrictions or authorize automatic publication.
   `assets/js/character-sheet-play.js` owns the browser-only controls and stays
   in this repository; export checks it and versions its HTML reference without
-  overwriting it. No cookies, storage, database, network writes or vault sync.
+  overwriting it. It may execute only the exported allowlisted combat dice with
+  Web Crypto and retain a bounded result history in page memory. Dice never
+  mutate resources. No cookies, storage, database, network writes or vault sync.
   Refresh restores published values, not necessarily full resources. Keep the
   no-JavaScript snapshot readable and retain the fixed published spell list.
 

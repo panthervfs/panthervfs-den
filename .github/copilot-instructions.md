@@ -43,7 +43,9 @@ build system unless explicitly requested.
   acquisition stories, local paths/PDFs and unplayed lore. Recap rules remain.
   The approved browser controller `assets/js/character-sheet-play.js` may
   change resources only in the current tab's memory; refresh resets to the
-  published snapshot. No storage, cookies, network writes or vault sync.
+  published snapshot. It may also execute only the exported allowlisted combat
+  dice with Web Crypto and keep a bounded page-memory result history; rolls
+  must not change resources. No storage, cookies, network writes or vault sync.
   Keep its versioned HTML reference current through the local exporter,
   preserve the no-JavaScript fallback and do not export a preparation catalog.
 

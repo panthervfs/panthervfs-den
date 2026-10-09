@@ -1,4 +1,4 @@
-// Bathys temporary play controls v1 - memory only; no storage, network, or source writes.
+// Bathys temporary play controls v2 - memory only; no storage, network, or source writes.
 (() => {
   "use strict";
   const root = document.querySelector(".cs2024");
@@ -13,6 +13,7 @@
     { code: "CP", name: "Copper", factor: 1, decimals: 0 },
   ];
   const bindings = [];
+  const rollHistory = [];
   let state;
   const report = (message, error = false) => {
     status.textContent = message;
@@ -34,16 +35,49 @@
     return Number(max);
   };
   const validate = s => {
-    if (s.version !== 1 || typeof s.inspiration !== "boolean") throw new Error("Unsupported play-state snapshot.");
+    if (!s || Array.isArray(s)
+      || Object.keys(s).sort().join() !== "currencyCP,hpAid,hpBase,hpManual,inspiration,leaderTemp,resources,rolls,version") {
+      throw new Error("Unexpected play-state fields.");
+    }
+    if (s.version !== 2 || typeof s.inspiration !== "boolean") throw new Error("Unsupported play-state snapshot.");
     const max = maximumHP(s);
     integer(s.currencyCP); integer(s.leaderTemp);
     if (!Array.isArray(s.resources)) throw new Error("Missing resource snapshot.");
     const keys = new Set();
     for (const r of s.resources) {
-      if (!/^[a-z0-9_]+$/.test(r.key) || keys.has(r.key) || typeof r.label !== "string") throw new Error("Invalid resource identity.");
+      if (!r || Array.isArray(r) || Object.keys(r).sort().join() !== "current,key,label,maximum"
+        || !/^[a-z0-9_]+$/.test(r.key) || keys.has(r.key) || typeof r.label !== "string") throw new Error("Invalid resource identity.");
       keys.add(r.key);
       if (r.maximum !== null) integer(r.maximum);
       integer(r.current, 0, r.maximum ?? limit);
+    }
+    if (!Array.isArray(s.rolls) || !s.rolls.length || s.rolls.length > 64) throw new Error("Missing or unbounded combat dice.");
+    const rollIds = new Set();
+    const unsafeRollText = /(?:\[\[|Z_PDF|obsidian:|file:|\/Users\/|<|>|javascript:|source_sha256|trial-section)/i;
+    for (const roll of s.rolls) {
+      if (!roll || Array.isArray(roll)
+        || Object.keys(roll).sort().join() !== "critical,dice,group,id,kind,label,modifier,note,type"
+        || !/^[a-z0-9-]+$/.test(roll.id) || rollIds.has(roll.id)
+        || !["Weapons", "Companions", "Spells and healing"].includes(roll.group)
+        || !["attack", "damage", "healing", "rider"].includes(roll.kind)
+        || typeof roll.label !== "string" || !roll.label || roll.label.length > 80
+        || unsafeRollText.test(roll.label)
+        || !Number.isSafeInteger(roll.modifier) || Math.abs(roll.modifier) > 100
+        || typeof roll.type !== "string" || roll.type.length > 80 || unsafeRollText.test(roll.type)
+        || typeof roll.note !== "string" || roll.note.length > 240 || unsafeRollText.test(roll.note)
+        || typeof roll.critical !== "boolean" || (roll.critical && roll.kind !== "damage")
+        || !Array.isArray(roll.dice) || roll.dice.length > 4
+        || (roll.kind === "attack" ? roll.dice.length !== 0 : roll.dice.length === 0)) {
+        throw new Error("Invalid combat dice specification.");
+      }
+      for (const term of roll.dice) {
+        if (!term || Array.isArray(term) || Object.keys(term).sort().join() !== "count,sides"
+          || !Number.isSafeInteger(term.count) || term.count < 1 || term.count > 20
+          || !Number.isSafeInteger(term.sides) || ![4, 6, 8, 10, 12, 20, 100].includes(term.sides)) {
+          throw new Error("Invalid combat die.");
+        }
+      }
+      rollIds.add(roll.id);
     }
     if (resource(s, "current_hp").maximum !== max || resource(s, "temp_hp").maximum !== null) throw new Error("Inconsistent HP snapshot.");
   };
@@ -103,6 +137,74 @@
       report(error.message, true);
     }
   };
+  const randomDie = sides => {
+    if (!globalThis.crypto?.getRandomValues) throw new Error("Secure browser dice are unavailable.");
+    const range = 0x100000000;
+    const ceiling = Math.floor(range / sides) * sides;
+    const value = new Uint32Array(1);
+    do { globalThis.crypto.getRandomValues(value); } while (value[0] >= ceiling);
+    return value[0] % sides + 1;
+  };
+  const executeRoll = (roll, mode = "normal", critical = false) => {
+    if (roll.kind === "attack") {
+      if (!["normal", "advantage", "disadvantage"].includes(mode) || critical) throw new Error("Unsupported attack mode.");
+      const dice = Array.from({ length: mode === "normal" ? 1 : 2 }, () => randomDie(20));
+      const keptIndex = mode === "normal" ? 0
+        : mode === "advantage" ? (dice[0] >= dice[1] ? 0 : 1)
+          : (dice[0] <= dice[1] ? 0 : 1);
+      const kept = dice[keptIndex];
+      const total = kept + roll.modifier;
+      const diceText = dice.map((value, index) => index === keptIndex ? `keep ${value}` : `discard ${value}`).join(", ");
+      return `${roll.label}: ${mode === "normal" ? `d20 ${dice[0]}` : diceText} ${roll.modifier < 0 ? "-" : "+"} ${Math.abs(roll.modifier)} = ${total}`;
+    }
+    if (mode !== "normal" || (critical && !roll.critical)) throw new Error("Unsupported damage mode.");
+    const terms = roll.dice.map(term => {
+      const values = Array.from({ length: term.count }, () => randomDie(term.sides));
+      return { ...term, values, subtotal: values.reduce((sum, value) => sum + value, 0) };
+    });
+    const rolled = terms.reduce((sum, term) => sum + term.subtotal, 0);
+    const maximum = critical ? roll.dice.reduce((sum, term) => sum + term.count * term.sides, 0) : 0;
+    const total = rolled + maximum + roll.modifier;
+    const breakdown = terms.map(term => `${term.count}d${term.sides} [${term.values.join(", ")}]`).join(" + ");
+    return `${roll.label}${critical ? " critical" : ""}: ${critical ? `max ${maximum} + ` : ""}${breakdown}${roll.modifier ? ` ${roll.modifier < 0 ? "-" : "+"} ${Math.abs(roll.modifier)}` : ""} = ${total}`;
+  };
+  const mountRolls = () => {
+    const secure = Boolean(globalThis.crypto?.getRandomValues);
+    const rollStatus = root.querySelector("[data-cs-roll-status]");
+    const historyList = root.querySelector("[data-cs-roll-history] ol");
+    const targets = [...root.querySelectorAll("[data-cs-roll-controls]")];
+    if (!rollStatus || !historyList || targets.length !== state.rolls.length) throw new Error("Combat dice controls do not match the snapshot.");
+    rollStatus.textContent = secure ? "Secure temporary dice ready · refresh clears results" : "Secure browser dice unavailable";
+    rollStatus.classList.toggle("is-error", !secure);
+    const record = result => {
+      rollHistory.unshift(result); rollHistory.splice(20);
+      historyList.replaceChildren(...rollHistory.map(text => {
+        const item = document.createElement("li"); item.textContent = text; return item;
+      }));
+    };
+    for (const roll of state.rolls) {
+      const matches = targets.filter(target => target.dataset.csRollControls === roll.id);
+      if (matches.length !== 1) throw new Error(`Missing or duplicate dice controls: ${roll.label}.`);
+      const controls = matches[0];
+      const output = root.querySelector(`[data-cs-roll-result="${roll.id}"]`);
+      if (!output) throw new Error(`Missing dice result: ${roll.label}.`);
+      const actions = roll.kind === "attack"
+        ? [["Normal", "normal", false], ["Adv", "advantage", false], ["Dis", "disadvantage", false]]
+        : [["Roll", "normal", false], ...(roll.critical ? [["Critical", "normal", true]] : [])];
+      for (const [label, mode, critical] of actions) {
+        const control = button(controls, label, `${label}: ${roll.label}`, () => {
+          try {
+            const result = executeRoll(roll, mode, critical);
+            output.textContent = result; output.classList.remove("is-error"); record(result);
+            report("Dice result generated in this page only. Refresh clears roll history; no tracker changed.");
+          } catch (error) {
+            output.textContent = `Roll failed: ${error.message}`; output.classList.add("is-error"); report(error.message, true);
+          }
+        });
+        control.disabled = !secure;
+      }
+    }
+  };
   const adjustMaximum = (s, aid, manual) => {
     const previousAid = s.hpAid;
     s.hpAid = aid; s.hpManual = manual;
@@ -154,7 +256,7 @@
     const grantTemp = (s, value) => { const temp = resource(s, "temp_hp"); temp.current = Math.max(temp.current, value); };
     button(health, "Temp HP", "Grant Temp HP without stacking", () => change(s => grantTemp(s, parseInteger(amount.value)), "Temp HP granted."));
     button(health, `Inspiring Leader: ${state.leaderTemp} Temp HP`, "Grant your Inspiring Leader Temp HP; adjust its reminder separately", () => change(s => grantTemp(s, s.leaderTemp), "Inspiring Leader Temp HP granted to you only."));
-    element(health, "small", "Manual effects: slots, free casts, reminders and consumables are independent. No automatic rolls, rests or companion effects.");
+    element(health, "small", "Manual effects: slots, free casts, reminders and consumables are independent. Dice results never apply damage, healing, rests or companion effects.");
     const adjustment = element(health, "details", undefined, "trial-hp-adjustments");
     const summary = element(adjustment, "summary", "Maximum HP");
     const aidRow = element(adjustment, "div", undefined, "trial-hp-adjustment-row");
@@ -220,8 +322,9 @@
         }
       });
     }
+    mountRolls();
     update();
-    report("Temporary play mode ready. Changes reset on refresh; nothing is saved or synced.");
+    report("Temporary play and secure dice ready. Changes and roll history reset on refresh; nothing is saved or synced.");
     // A back/forward-cache restoration is not a reload and retains this tab's live values.
     window.addEventListener("pageshow", event => {
       if (event.persisted) report("Temporary play resumed in this tab. Refresh to reset to the published snapshot.");

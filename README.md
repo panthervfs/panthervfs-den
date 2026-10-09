@@ -78,10 +78,13 @@ and balance-input text. The denominations remain linked equivalents.
 Damage uses Temp HP first; Temp HP grants retain the larger value rather than
 stacking. Aid only heals by an increase in its effective bonus; lowering/ending
 it clamps current HP only when above the new maximum. Slots, reminders and
-consumables remain independent manual counters. There are no automatic rolls,
+consumables remain independent manual counters. Combat dice use Web Crypto and show transparent results in a bounded page-memory
+history that also resets on refresh. Normal/Advantage/Disadvantage are manual,
+and Bathys critical buttons are limited to unambiguous original attack dice.
+Rolls never apply damage/healing or change any tracker. There are no automatic
 rests, casting, companion effects or preparation changes. Print uses the
 currently displayed values without editing controls. With JavaScript disabled
-or unavailable, the published starting values remain readable.
+or unavailable, the published starting values and roll formulas remain readable.
 
 Only this approved character page may contain build statistics, current/max
 resources, companion values, remaining consumables and linked currency.
