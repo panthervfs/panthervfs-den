@@ -21,7 +21,7 @@ Open <http://localhost:8000/>.
 - `bathys-anemos.html`: the Bathys Anemos session index.
 - `sophirus.html`: approved level-8 starting snapshot with temporary play controls.
 - `bathys-anemos-session-01.html` through
-  `bathys-anemos-session-05.html`: public session recaps.
+  `bathys-anemos-session-06.html`: public session recaps.
 - `notes.html`: public note links.
 - `costgnome.html`: the landing page for items being researched before purchase.
 - `shopping-list.html`: CostGnome items that do not have confirmed prices.
