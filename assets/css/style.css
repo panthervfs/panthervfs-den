@@ -274,6 +274,33 @@ li {
   margin-bottom: 0;
 }
 
+.session-artwork {
+  margin: 0 0 3.5rem;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 0.35);
+}
+
+.session-artwork img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.session-artwork figcaption {
+  padding: 0.7rem 1rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  font-family: "Crimson Text", serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  text-align: center;
+}
+
 .section-label {
   margin-bottom: 0.5rem;
   color: var(--gold);
@@ -575,5 +602,12 @@ blockquote {
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .session-artwork {
+    break-inside: avoid;
+    box-shadow: none;
   }
 }

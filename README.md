@@ -48,7 +48,11 @@ file. For each new played session:
 3. Use character names only. Omit player and DM names, private finances,
    character-build bookkeeping, local paths, Obsidian links, PDF references,
    rules text, and unplayed campaign material.
-4. Add the session to `bathys-anemos.html` and connect the previous/next links.
+4. If adding recap artwork, use an original public-safe image based only on the
+   published recap. Store it in `assets/images/`, provide descriptive alt text
+   and explicit dimensions, and do not depict private identities or unpublished
+   lore.
+5. Add the session to `bathys-anemos.html` and connect the previous/next links.
 Do not copy or automatically publish files from the private vault.
 
 ## Publish with GitHub Pages
